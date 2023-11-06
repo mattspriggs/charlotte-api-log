@@ -10,6 +10,6 @@ export function getAllPosts(db = connection) {
   )
 }
 
-export function addPost(post: Post): Promise<PostData[]> {
+export function addPost(post: PostData): Promise<Post[]> {
   return connection('posts').insert(post).returning('*')
 }
