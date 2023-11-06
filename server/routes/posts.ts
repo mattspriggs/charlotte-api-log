@@ -1,7 +1,7 @@
 import express from 'express'
 import * as db from '../db/db'
 import { Post } from '../../models/post'
-import { redirect } from 'react-router-dom'
+import { redirect, useParams } from 'react-router-dom'
 
 const router = express.Router()
 
@@ -17,11 +17,9 @@ router.get('/', async (req, res) => {
     })
   }
 })
-
-// Post a post
+// POST a post
 router.post('/', async (req, res) => {
   try {
-    console.log(req.body)
     const post = req.body
     const newPost = await db.addPost(post)
     if (!newPost) {
@@ -37,4 +35,23 @@ router.post('/', async (req, res) => {
     })
   }
 })
+// PATCH a post
+router.patch('/:id', async (req, res) => {
+  try {
+    const post = req.body
+    const postId = Number(req.params.id)
+    const patchPost = await db.patchPost(post, postId)
+    if (!patchPost) {
+      res.status(400).json({
+        message: 'Post was not edited',
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      message: 'An error occurred while editing the post',
+    })
+  }
+})
+
 export default router
