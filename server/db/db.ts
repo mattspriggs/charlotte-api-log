@@ -26,3 +26,8 @@ export function addPost(post: PostData): Promise<Post[]> {
     .insert({ ...post, date_created })
     .returning('*')
 }
+
+// DELETE
+export function deletePost(post: Post, id: number): void {
+  return connection('posts').delete().where('id', id)
+}

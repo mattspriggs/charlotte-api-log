@@ -54,4 +54,17 @@ router.patch('/:id', async (req, res) => {
   }
 })
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const post = req.body
+    const postId = Number(req.params.id)
+    await db.deletePost(post, postId)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      message: 'An error occurred while editing the post',
+    })
+  }
+})
+
 export default router
