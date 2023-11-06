@@ -11,5 +11,8 @@ export function getAllPosts(db = connection) {
 }
 
 export function addPost(post: PostData): Promise<Post[]> {
-  return connection('posts').insert(post).returning('*')
+  const date_created = new Date(Date.now())
+  return connection('posts')
+    .insert({ ...post, date_created })
+    .returning('*')
 }
