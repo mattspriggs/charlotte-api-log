@@ -46,6 +46,7 @@ router.patch('/:id', async (req, res) => {
         message: 'Post was not edited',
       })
     }
+    res.status(201).json({ message: 'Post successful' })
   } catch (error) {
     console.log(error)
     res.status(500).json({

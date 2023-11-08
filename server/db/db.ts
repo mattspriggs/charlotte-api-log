@@ -25,7 +25,7 @@ export function addPost(post: PostData): Promise<Post[]> {
   const date_created = new Date(Date.now())
   return connection('posts')
     .insert({ ...post, date_created })
-    .returning('*')
+    .returning(['id', 'title', 'text'])
 }
 
 // DELETE
