@@ -62,7 +62,7 @@ router.delete('/:id', async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({
-      message: 'An error occurred while editing the post',
+      message: 'An error occurred while deleting the post',
     })
   }
 })

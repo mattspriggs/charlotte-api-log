@@ -1,5 +1,6 @@
 import connection from './connection.ts'
 import { Post, PostData, PostUpdate } from '../../models/post.ts'
+import { Comment, CommentData } from '../../models/comment.ts'
 
 // GET
 export function getAllPosts(db = connection) {
