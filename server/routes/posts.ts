@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
         message: 'Post was not added',
       })
     }
-    res.status(201).json(newPost)
+    res.status(201).json(newPost[0])
   } catch (error) {
     console.log(error)
     res.status(500).json({
@@ -46,7 +46,7 @@ router.patch('/:id', async (req, res) => {
         message: 'Post was not edited',
       })
     }
-    res.status(201).json(patchPost)
+    res.status(201).json(patchPost[0])
   } catch (error) {
     console.log(error)
     res.status(500).json({
@@ -60,6 +60,7 @@ router.delete('/:id', async (req, res) => {
     const post = req.body
     const postId = Number(req.params.id)
     await db.deletePost(post, postId)
+    res.sendStatus(200)
   } catch (error) {
     console.log(error)
     res.status(500).json({
